@@ -1,0 +1,30 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+	<url-mapping>
+		<pattern value="/pessoa/#{nome}" />
+		<view-id value="/managePessoas/view.faces" />
+	</url-mapping>
+	
+	<url-mapping>
+		<pattern value="/pessoa/#{nome}/rdf" />
+		<view-id value="/managePessoas/view.faces" />
+		<action>#{managePessoasController.downloadRdfPessoa}</action>
+	</url-mapping>
+	
+	
+	
+	<url-mapping>
+		<pattern value="/grupo/#{nome}" />
+		<view-id value="/manageGruposPesquisa/view.faces" />
+	</url-mapping>
+	
+	<url-mapping>
+		<pattern value="/grupo/#{nome}/rdf" />
+		<view-id value="/manageGruposPesquisa/view.faces" />
+		<action>#{manageGruposPesquisaController.createRdfGrupoPesquisa}</action>
+	</url-mapping>
+
+</pretty-config>

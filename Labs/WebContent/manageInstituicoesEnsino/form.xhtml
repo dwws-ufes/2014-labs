@@ -1,0 +1,121 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/templates/default/decorator.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{msgs['manageInstituicoesEnsino.title.create']}" rendered="#{(! manageInstituicoesEnsinoController.readOnly) and (manageInstituicoesEnsinoController.selectedEntity.id == null)}" />
+		<h:outputText value="#{msgs['manageInstituicoesEnsino.title.update']}" rendered="#{(! manageInstituicoesEnsinoController.readOnly) and (manageInstituicoesEnsinoController.selectedEntity.id != null)}" />
+		<h:outputText value="#{msgs['manageInstituicoesEnsino.title.retrieve']}" rendered="#{manageInstituicoesEnsinoController.readOnly}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<h1>
+			<h:outputText value="#{msgs['manageInstituicoesEnsino.title.create']}" rendered="#{(! manageInstituicoesEnsinoController.readOnly) and (manageInstituicoesEnsinoController.selectedEntity.id == null)}" />
+			<h:outputText value="#{msgs['manageInstituicoesEnsino.title.update']}" rendered="#{(! manageInstituicoesEnsinoController.readOnly) and (manageInstituicoesEnsinoController.selectedEntity.id != null)}" />
+			<h:outputText value="#{msgs['manageInstituicoesEnsino.title.retrieve']}" rendered="#{manageInstituicoesEnsinoController.readOnly}" />
+		</h1>
+		
+		<div class="crud">
+			<ui:decorate template="/resources/templates/default/form.xhtml">
+				<h:form id="form">
+					<p:hotkey bind="#{msgs['crud.hotkey.focusFirstField']}" handler="findObjectById('form:nome').focus();" />
+					
+					<h:panelGroup id="nomeField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:nome" />
+							<ui:param name="tooltip" value="#{msgs['manageInstituicoesEnsino.form.nome.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageInstituicoesEnsino.form.nome']}" /></ui:define>
+							<p:inputText id="nome" value="#{manageInstituicoesEnsinoController.selectedEntity.nome}" size="50" required="true" disabled="#{manageInstituicoesEnsinoController.readOnly}">
+								<p:ajax event="blur" update="nomeField uriField" listener="#{manageInstituicoesEnsinoController.suggestUriDBPEDIA}" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<h:panelGroup id="siglaField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:sigla" />
+							<ui:param name="tooltip" value="#{msgs['manageInstituicoesEnsino.form.sigla.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageInstituicoesEnsino.form.sigla']}" /></ui:define>
+							<p:inputText id="sigla" value="#{manageInstituicoesEnsinoController.selectedEntity.sigla}" size="50" required="true" disabled="#{manageInstituicoesEnsinoController.readOnly}">
+								<p:ajax event="blur" update="siglaField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<h:panelGroup id="uriField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:uri" />
+							<ui:param name="tooltip" value="#{msgs['manageInstituicoesEnsino.form.uri.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageInstituicoesEnsino.form.uri']}" /></ui:define>
+							<p:inputText id="uri" value="#{manageInstituicoesEnsinoController.selectedEntity.uri}" size="50" required="true" disabled="#{manageInstituicoesEnsinoController.readOnly}">
+								<p:ajax event="blur" update="uriField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					
+					<h:panelGroup id="siteField" rendered="#{manageInstituicoesEnsinoController.readOnly}">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:site" />
+							<ui:param name="tooltip" value="#{msgs['manageInstituicoesEnsino.form.site.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageInstituicoesEnsino.form.site']}" /></ui:define>
+							<p:inputText id="site" value="#{manageInstituicoesEnsinoController.informacaoExtra.site}" size="50" disabled="#{manageInstituicoesEnsinoController.readOnly}">
+								<p:ajax event="blur" update="siteField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					
+					<h:panelGroup id="sedeField" rendered="#{manageInstituicoesEnsinoController.readOnly}">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:sede" />
+							<ui:param name="tooltip" value="#{msgs['manageInstituicoesEnsino.form.sede.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageInstituicoesEnsino.form.sede']}" /></ui:define>
+							<p:inputText id="sede" value="#{manageInstituicoesEnsinoController.informacaoExtra.sede}" size="50" disabled="#{manageInstituicoesEnsinoController.readOnly}">
+								<p:ajax event="blur" update="sedeField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					
+					<h:panelGroup id="reitorField" rendered="#{manageInstituicoesEnsinoController.readOnly}">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:reitor" />
+							<ui:param name="tooltip" value="#{msgs['manageInstituicoesEnsino.form.reitor.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageInstituicoesEnsino.form.reitor']}" /></ui:define>
+							<p:inputText id="reitor" value="#{manageInstituicoesEnsinoController.informacaoExtra.reitor}" size="50" disabled="#{manageInstituicoesEnsinoController.readOnly}">
+								<p:ajax event="blur" update="reitorField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+
+					<ui:decorate template="/resources/templates/default/formbutton.xhtml">
+						<h:panelGroup rendered="#{! manageInstituicoesEnsinoController.readOnly}">
+							<p:commandButton action="#{manageInstituicoesEnsinoController.list}" value="#{msgs['crud.button.cancel']}" immediate="true" icon="buttonCancel" />
+							<p:commandButton action="#{manageInstituicoesEnsinoController.save}" value="#{msgs['crud.button.save']}" icon="buttonOk" update=":form :globalMessages" />
+							<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageInstituicoesEnsinoController.list}" immediate="true" />
+							<p:hotkey bind="#{msgs['crud.hotkey.save']}" action="#{manageInstituicoesEnsinoController.save}" update=":form :globalMessages" />
+						</h:panelGroup>
+						<h:panelGroup rendered="#{manageInstituicoesEnsinoController.readOnly}">
+							<p:commandButton action="#{manageInstituicoesEnsinoController.list}" value="#{msgs['crud.button.back']}" immediate="true" icon="buttonBack" />
+							<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageInstituicoesEnsinoController.list}" immediate="true" />
+						</h:panelGroup>
+					</ui:decorate>
+				</h:form>
+			</ui:decorate>
+		</div>
+	</ui:define>
+
+	<ui:define name="help">
+		<h4><h:outputText value="#{msgs['text.hotkeys']}" />:</h4>
+		<ul>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.focusFirstField']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.focusFirstField']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.backToList']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.backToList']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.save']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.save']}" />.</li>
+		</ul>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#"
+     xml:base="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2">
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#interesse -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#interesse">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#LinhaPesquisa"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Pessoa"/>
+        <owl:equivalentProperty rdf:resource="http://xmlns.com/foaf/0.1/topic_interest"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#membro -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#membro">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#GrupoPesquisa"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Pessoa"/>
+        <owl:equivalentProperty rdf:resource="http://xmlns.com/foaf/0.1/member"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#pertence -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#pertence">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#GrupoPesquisa"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#InstituicaoEnsino"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#possuiLinha -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#possuiLinha">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#GrupoPesquisa"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#LinhaPesquisa"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#publica -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#publica">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Artigo"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Pessoa"/>
+        <owl:equivalentProperty rdf:resource="http://xmlns.com/foaf/0.1/publications"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/member -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/member"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/publications -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/publications"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/topic_interest -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/topic_interest"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Artigo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Artigo">
+        <owl:equivalentClass rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#GrupoPesquisa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#GrupoPesquisa">
+        <owl:equivalentClass rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#InstituicaoEnsino -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#InstituicaoEnsino">
+        <owl:equivalentClass rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#LinhaPesquisa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#LinhaPesquisa"/>
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Pessoa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Pessoa">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2000/10/swap/pim/contact#Person -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Document -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Document"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Group -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Group"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Organization -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Laylla_Duarte_de_Cerqueira -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Laylla_Duarte_de_Cerqueira">
+        <rdf:type rdf:resource="http://www.semanticweb.org/dwws/ontologies/2014/6/untitled-ontology-2#Pessoa"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

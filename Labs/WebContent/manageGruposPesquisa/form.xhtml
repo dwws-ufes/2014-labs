@@ -1,0 +1,139 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/templates/default/decorator.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{msgs['manageGruposPesquisa.title.create']}" rendered="#{(! manageGruposPesquisaController.readOnly) and (manageGruposPesquisaController.selectedEntity.id == null)}" />
+		<h:outputText value="#{msgs['manageGruposPesquisa.title.update']}" rendered="#{(! manageGruposPesquisaController.readOnly) and (manageGruposPesquisaController.selectedEntity.id != null)}" />
+		<h:outputText value="#{msgs['manageGruposPesquisa.title.retrieve']}" rendered="#{manageGruposPesquisaController.readOnly}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<h1>
+			<h:outputText value="#{msgs['manageGruposPesquisa.title.create']}" rendered="#{(! manageGruposPesquisaController.readOnly) and (manageGruposPesquisaController.selectedEntity.id == null)}" />
+			<h:outputText value="#{msgs['manageGruposPesquisa.title.update']}" rendered="#{(! manageGruposPesquisaController.readOnly) and (manageGruposPesquisaController.selectedEntity.id != null)}" />
+			<h:outputText value="#{msgs['manageGruposPesquisa.title.retrieve']}" rendered="#{manageGruposPesquisaController.readOnly}" />
+		</h1>
+		
+		<div class="crud">
+			<ui:decorate template="/resources/templates/default/form.xhtml">
+				<h:form id="form">
+					<p:hotkey bind="#{msgs['crud.hotkey.focusFirstField']}" handler="findObjectById('form:nome').focus();" />
+					
+					<h:panelGroup id="nomeField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:nome" />
+							<ui:param name="tooltip" value="#{msgs['manageGruposPesquisa.form.nome.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageGruposPesquisa.form.nome']}" /></ui:define>
+							<p:inputText id="nome" value="#{manageGruposPesquisaController.selectedEntity.nome}" size="50" required="true" disabled="#{manageGruposPesquisaController.readOnly}">
+								<p:ajax event="blur" update="nomeField localUriField" listener="#{manageGruposPesquisaController.suggestUri}" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<h:panelGroup id="siglaField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:sigla" />
+							<ui:param name="tooltip" value="#{msgs['manageGruposPesquisa.form.sigla.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageGruposPesquisa.form.sigla']}" /></ui:define>
+							<p:inputText id="sigla" value="#{manageGruposPesquisaController.selectedEntity.sigla}" size="50" required="true" disabled="#{manageGruposPesquisaController.readOnly}">
+								<p:ajax event="blur" update="siglaField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<h:panelGroup id="localUriField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:localUri" />
+							<ui:param name="tooltip" value="#{msgs['manageGruposPesquisa.form.localUri.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageGruposPesquisa.form.localUri']}" /></ui:define>
+							<p:inputText id="localUri" value="#{manageGruposPesquisaController.selectedEntity.localUri}" size="50" required="true" disabled="#{manageGruposPesquisaController.readOnly}">
+								<p:ajax event="blur" update="localUriField" />
+							</p:inputText>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<h:panelGroup id="anoFundacaoField">						
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:anoFundacao" />
+							<ui:param name="tooltip" value="#{msgs['manageGruposPesquisa.form.anoFundacao.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageGruposPesquisa.form.anoFundacao']}" /></ui:define>
+							
+							
+							<p:inputMask id="anoFundacao" mask="9999" maxlength="4" value="#{manageGruposPesquisaController.selectedEntity.anoFundacao}" size="50" required="true" disabled="#{manageGruposPesquisaController.readOnly}">
+								<p:ajax event="blur" update="anoFundacaoField" />
+							</p:inputMask>
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<h:panelGroup id="instituicaoEnsinoField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:instituicaoEnsino" />
+							<ui:param name="tooltip" value="#{msgs['manageGruposPesquisa.form.instituicaoEnsino.tooltip']}" />
+							<ui:define name="label"><h:outputText value="#{msgs['manageGruposPesquisa.form.instituicaoEnsino']}" /></ui:define>
+														
+							<p:selectOneMenu id="instituicaoEnsino" value="#{manageGruposPesquisaController.selectedEntity.instituicaoEnsino}" converter="#{manageInstituicoesEnsinoController.instituicaoEnsinoConverter}" required="true" disabled="#{manageGruposPesquisaController.readOnly}">
+								<f:selectItem itemLabel="#{msgs['manageGruposPesquisa.form.instituicaoEnsino.blankOption']}" itemValue=""/>
+								<f:selectItems value="#{manageInstituicoesEnsinoController.instituicoesEnsino}" var="inst" itemValue="#{inst}" itemLabel="#{inst.nome}" />
+								<p:ajax event="change" update="instituicaoEnsinoField"/>
+							</p:selectOneMenu>
+							
+						</ui:decorate>
+					</h:panelGroup>
+					
+					<h:panelGroup id="linhasPesquisaField">
+						<ui:decorate template="/resources/templates/default/formfield.xhtml">
+							<ui:param name="fieldName" value="form:linhasPesquisa" />							
+							<ui:param name="tooltip" value="#{msgs['manageGruposPesquisa.form.linhasPesquisa.tooltip']}" />							
+							<ui:define name="label"><h:outputText value="#{msgs['manageGruposPesquisa.form.linhasPesquisa']}" /></ui:define>
+							
+							
+							<p:selectManyCheckbox  id="linhasPesquisa" value="#{manageGruposPesquisaController.selectedEntity.linhasPesquisa}" converter="#{manageLinhasPesquisaController.linhaPesquisaConverter}" disabled="#{manageGruposPesquisaController.readOnly}"  layout="grid" columns="1" >
+								<f:selectItems value="#{manageLinhasPesquisaController.linhasPesquisa}" var="lp" itemValue="#{lp}" itemLabel="#{lp.titulo}"/>
+								<p:ajax event="change" update="linhasPesquisaField"/>
+							</p:selectManyCheckbox>							
+						</ui:decorate>
+					</h:panelGroup>
+
+					<ui:decorate template="/resources/templates/default/formbutton.xhtml">
+					
+						<h:panelGroup rendered="#{! manageGruposPesquisaController.readOnly}">
+							<p:commandButton action="#{manageGruposPesquisaController.list}" value="#{msgs['crud.button.cancel']}" immediate="true" icon="buttonCancel" />
+							<p:commandButton action="#{manageGruposPesquisaController.save}" value="#{msgs['crud.button.save']}" icon="buttonOk" update=":form :globalMessages" />
+							<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageGruposPesquisaController.list}" immediate="true" />
+							<p:hotkey bind="#{msgs['crud.hotkey.save']}" action="#{manageGruposPesquisaController.save}" update=":form :globalMessages" />
+						</h:panelGroup>		
+						
+						
+						<h:panelGroup rendered="#{manageGruposPesquisaController.readOnly}">
+							<p:commandButton action="#{manageGruposPesquisaController.list}" value="#{msgs['crud.button.back']}" immediate="true" icon="buttonBack" />
+							<p:hotkey bind="#{msgs['crud.hotkey.backToList']}" action="#{manageGruposPesquisaController.list}" immediate="true" />
+						</h:panelGroup>
+						
+						<h:panelGroup rendered="#{manageGruposPesquisaController.readOnly}">
+							<p:dataList value="#{manageGruposPesquisaController.artigos}" var="art" type="ordered" >
+								<f:facet name="header">Publications</f:facet>
+								<a href="#{art.link}" target="_blank"> #{art.titulo} #{art.anoPublicacao}</a>
+							</p:dataList>
+						</h:panelGroup>
+						
+						
+					</ui:decorate>
+				</h:form>
+			</ui:decorate>
+		</div>
+	</ui:define>
+
+	<ui:define name="help">
+		<h4><h:outputText value="#{msgs['text.hotkeys']}" />:</h4>
+		<ul>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.focusFirstField']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.focusFirstField']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.backToList']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.backToList']}" />;</li>
+			<li><b><h:outputText value="#{msgs['crud.hotkey.save']}" /></b>: <h:outputText value="#{msgs['crud.help.hotkeys.save']}" />.</li>
+		</ul>
+	</ui:define>
+</ui:composition>

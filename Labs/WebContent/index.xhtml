@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"
+      template="/resources/templates/default/decorator.xhtml">
+
+	<ui:define name="title"><h:outputText value="#{msgs['title.home']}"/> </ui:define>
+	
+	<ui:define name="body">
+		<h1><h:outputText value="#{msgs['title.home']}"/></h1>
+		
+		<p style="text-align:justify;">
+			O grupo de pesquisa investiga metodologias e técnicas que se aplicam à modelagem conceitual 
+			e à definição e a evolução de arquiteturas de sistemas de informação no contexto de organizações. 
+		</p>
+		
+		<p>O grupo conta com atividades nas seguintes linhas de pesquisa: 
+		<ul>
+		<li>Ontologias e Modelos Conceituais de Referência (Ontologies and Reference Models);</li>
+		<li>Arquitetura Organizacional e Modelagem de Organizações (Enterprise Architecture e Enterprise Modeling); </li>
+		<li>Modelagem e Gerência de Processos de Negócio (Business Process Management); </li>
+		<li>Desenvolvimento Orientado a Modelos (Model-Driven Development); </li>
+		<li>Gestão do Conhecimento (Knowledge Management); e, </li>
+		<li>Ambientes de Desenvolvimento de Software baseados em Ontologias.		</li>
+		</ul>
+		</p>
+	</ui:define>
+      
+</ui:composition>
